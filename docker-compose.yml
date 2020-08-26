@@ -1,0 +1,26 @@
+# for development purposes
+version: '3.4'
+
+services:
+  pg:
+    image: postgres:latest
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    command: web
+    env_file:
+      - .env
+    volumes:
+      - './static:/opt/blog_backend/static:rw'
+    ports:
+      - 8000:8000
+    depends_on:
+      - pg
+
+volumes:
+  pg-data:
