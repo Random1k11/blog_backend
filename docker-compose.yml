@@ -17,6 +17,7 @@ services:
       - .env
     volumes:
       - './static:/opt/blog_backend/static:rw'
+      - "./:/opt/blog_backend"
     ports:
       - 8000:8000
     depends_on:

@@ -23,6 +23,8 @@ from blog_backend.views import (
 )
 from posts.views import PostViewSet
 
+from django.conf.urls.static import static
+
 router = routers.DefaultRouter()
 router.register(r'posts', PostViewSet)
 
@@ -32,7 +34,9 @@ urlpatterns = [
     path(r'admin/', admin.site.urls),
     path(r'ping', PingView.as_view(), name='ping'),
     path(r'api/', include(router.urls)),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+print('##############', urlpatterns)
 
 if settings.DEBUG:
     import debug_toolbar
