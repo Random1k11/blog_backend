@@ -2,6 +2,7 @@
 version: '3.4'
 
 services:
+
   pg:
     image: postgres:latest
     restart: unless-stopped

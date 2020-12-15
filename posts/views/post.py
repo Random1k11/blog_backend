@@ -6,6 +6,6 @@ from posts.serializers import PostSerializer
 
 
 class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all().order_by('updated_at')
+    queryset = Post.objects.filter(active=True).order_by('title')
     serializer_class = PostSerializer
     pagination_class = LimitOffsetPagination
